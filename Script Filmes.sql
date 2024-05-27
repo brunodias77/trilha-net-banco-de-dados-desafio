@@ -325,3 +325,16 @@ REFERENCES [dbo].[Generos] ([Id])
 GO
 ALTER TABLE [dbo].[FilmesGenero] CHECK CONSTRAINT [FK__FilmesGen__IdGen__2E1BDC42]
 GO
+
+SELECT f.Nome , f.Ano  FROM Filmes f;
+SELECT f.Nome, f.Ano FROM Filmes f ORDER BY Ano ASC;
+SELECT f.Nome, f.Ano, f.Duracao FROM Filmes f WHERE f.Nome  = 'De volta para o futuro';
+SELECT * FROM Filmes f WHERE f.Ano = 1997;
+SELECT * FROM Filmes f WHERE f.Ano > 2000;
+SELECT * FROM Filmes f WHERE f.Duracao > 100 AND f.Duracao < 150 ORDER BY f.Duracao ASC;
+SELECT f.Ano, COUNT(*) AS QuantidadeDeFilmes FROM Filmes f GROUP BY f.Ano ORDER BY QuantidadeDeFilmes DESC;
+SELECT a.PrimeiroNome , a.UltimoNome FROM Atores a WHERE a.Genero = 'M'; 
+SELECT a.PrimeiroNome , a.UltimoNome FROM Atores a WHERE a.Genero = 'F' ORDER BY a.PrimeiroNome ; 
+SELECT f.Nome, g.Genero  FROM Filmes f INNER JOIN FilmesGenero fg ON f.Id = fg.IdFilme INNER JOIN Generos g ON g.Id = fg.IdGenero ;
+SELECT f.Nome, g.Genero  FROM Filmes f INNER JOIN FilmesGenero fg ON f.Id = fg.IdFilme INNER JOIN Generos g ON g.Id = fg.IdGenero WHERE g.Genero  = 'Mistério' ;
+SELECT f.Nome AS NomeDoFilme, a.PrimeiroNome, a.UltimoNome, ef.Papel FROM Filmes f JOIN ElencoFilme ef ON f.Id = ef.IdFilme JOIN Atores a ON ef.IdAtor = a.Id;
